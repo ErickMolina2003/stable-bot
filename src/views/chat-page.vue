@@ -121,12 +121,12 @@ export default class ChatPage extends Vue {
     {
       speaker: "bot",
       speakerTitle: "Erick Molina",
-      message: "Este es un test",
+      message: "Este es un test del bot",
     },
     {
       speaker: "yo",
       speakerTitle: "Stable Molina",
-      message: "Este es un test del bot",
+      message: "Este es un test",
     },
   ];
 
