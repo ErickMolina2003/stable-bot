@@ -2,8 +2,8 @@
   <div class="chatting-component">
     <v-main class="pa-0 ma-0 main-wrap px-5">
       <v-row justify="center" class="py-4">
-        <v-col cols="4" md="2" lg="2">
-          <h4 class="lightgray--text text--darken-3">Este es un title</h4>
+        <v-col cols="6" md="2" lg="2">
+          <h4 class="lightgray--text text--darken-3">Chat bot</h4>
         </v-col>
       </v-row>
       <div v-for="(message, index) in messages" :key="index">
@@ -14,7 +14,7 @@
         >
           <v-col
             v-if="!ownChat(message.speaker)"
-            cols="6"
+            cols="2"
             md="1"
             lg="1"
             align-self="start"
@@ -74,7 +74,7 @@
 
           <v-col
             v-if="ownChat(message.speaker)"
-            cols="6"
+            cols="2"
             md="1"
             lg="1"
             align-self="start"
@@ -143,6 +143,16 @@ export default class ChatPage extends Vue {
     } else {
       return require("@/assets/usuarios/bot2.svg");
     }
+  }
+
+  sendMessage() {
+    const newMessage = {
+      speaker: "yo",
+      speakerTitle: "Erick Molina",
+      message: this.input,
+    };
+    this.messages.push(newMessage);
+    this.input = "";
   }
 }
 </script>
