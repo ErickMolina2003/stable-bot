@@ -150,11 +150,10 @@ export default class ChatPage extends Vue {
     };
     this.messages.push(newMessage);
 
-    const API_KEY = "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";
+    const API_KEY = "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";
 
     const CHAT_ENDPOINT = "https://api.openai.com/v1/chat/completions";
 
-    console.log(this.input);
     axios
       .post(
         CHAT_ENDPOINT,
@@ -175,9 +174,6 @@ export default class ChatPage extends Vue {
         }
       )
       .then((response) => {
-        console.log("mi chat");
-        console.log(response.data.choices[0].message.content);
-        console.log(response.data.choices);
         const newMessage = {
           speaker: "bot",
           speakerTitle: "Stable Erick Bot",
