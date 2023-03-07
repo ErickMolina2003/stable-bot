@@ -14,7 +14,7 @@
         >
           <v-col
             v-if="!ownChat(message.speaker)"
-            cols="2"
+            cols="3"
             md="1"
             lg="1"
             align-self="start"
@@ -24,8 +24,8 @@
               <v-img
                 class="img-chat rounded-circle"
                 :src="getImgUrl(message)"
-                max-height="40px"
-                max-width="40px"
+                max-height="80px"
+                max-width="80px"
               ></v-img>
             </v-row>
           </v-col>
@@ -39,14 +39,14 @@
           >
             <v-row>
               <v-col cols="12" md="12" lg="12" class="pb-0">
-                <h3>{{ message.speakerTitle }}</h3>
+                <h2>{{ message.speakerTitle }}</h2>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="12" md="12" lg="12">
-                <h4 class="white--text">
+                <h3 class="white--text">
                   {{ message.message }}
-                </h4>
+                </h3>
               </v-col>
             </v-row>
           </v-col>
@@ -60,21 +60,21 @@
           >
             <v-row>
               <v-col cols="12" md="12" lg="12" class="pb-0">
-                <h3>{{ message.speakerTitle }}</h3>
+                <h2>{{ message.speakerTitle }}</h2>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="12" md="12" lg="12">
-                <h4 class="white--text">
+                <h3 class="white--text">
                   {{ message.message }}
-                </h4>
+                </h3>
               </v-col>
             </v-row>
           </v-col>
 
           <v-col
             v-if="ownChat(message.speaker)"
-            cols="2"
+            cols="3"
             md="1"
             lg="1"
             align-self="start"
@@ -82,8 +82,8 @@
             <v-img
               class="img-chat rounded-circle"
               :src="getImgUrl(message)"
-              max-height="40px"
-              max-width="40px"
+              max-height="80px"
+              max-width="80px"
             ></v-img>
           </v-col>
         </v-row>
@@ -94,7 +94,6 @@
         @keyup.enter="sendMessage"
         v-model="input"
         background-color="var(--v-primary-darken3)"
-        append-icon="mdi-send"
         dark
         label="Escribe un mensaje"
         dense
@@ -103,12 +102,14 @@
         rounded
         solo
       ></v-text-field>
+      <v-btn icon dark @click="sendMessage"><v-icon>mdi-send</v-icon></v-btn>
     </v-footer>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
+import axios from "axios";
 
 @Component({
   name: "ChatPage",
@@ -120,13 +121,9 @@ export default class ChatPage extends Vue {
   messages = [
     {
       speaker: "bot",
-      speakerTitle: "Erick Molina",
-      message: "Este es un test del bot",
-    },
-    {
-      speaker: "yo",
-      speakerTitle: "Stable Molina",
-      message: "Este es un test",
+      speakerTitle: "Stable Erick Bot",
+      message:
+        "¡Hola! ¡Mi nombre es Stable Erick!\nSoy una Inteligencia Artificial creada por Erick Molina y estoy para servirte en lo que pueda :)",
     },
   ];
 
@@ -152,6 +149,45 @@ export default class ChatPage extends Vue {
       message: this.input,
     };
     this.messages.push(newMessage);
+
+    const API_KEY = "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";
+
+    const CHAT_ENDPOINT = "https://api.openai.com/v1/chat/completions";
+
+    console.log(this.input);
+    axios
+      .post(
+        CHAT_ENDPOINT,
+        {
+          model: "gpt-3.5-turbo-0301",
+          messages: [
+            {
+              role: "user",
+              content: `${this.input}`,
+            },
+          ],
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${API_KEY}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log("mi chat");
+        console.log(response.data.choices[0].message.content);
+        console.log(response.data.choices);
+        const newMessage = {
+          speaker: "bot",
+          speakerTitle: "Stable Erick Bot",
+          message: response.data.choices[0].message.content,
+        };
+        this.messages.push(newMessage);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     this.input = "";
   }
 }
@@ -173,7 +209,7 @@ export default class ChatPage extends Vue {
   background-color: var(--v-primary-lighten1);
 }
 
-.user-chat h3 {
+.user-chat h2 {
   color: var(--v-success-base);
 }
 
@@ -181,7 +217,7 @@ export default class ChatPage extends Vue {
   background-color: var(--v-dark-base);
 }
 
-.own-chat h3 {
+.own-chat h2 {
   color: var(--v-error-base);
 }
 </style>
