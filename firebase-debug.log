@@ -1,0 +1,34 @@
+[debug] [2023-03-07T01:51:33.399Z] ----------------------------------------------------------------------
+[debug] [2023-03-07T01:51:33.401Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-03-07T01:51:33.401Z] CLI Version:   11.24.0
+[debug] [2023-03-07T01:51:33.402Z] Platform:      win32
+[debug] [2023-03-07T01:51:33.402Z] Node Version:  v14.18.0
+[debug] [2023-03-07T01:51:33.402Z] Time:          Mon Mar 06 2023 19:51:33 GMT-0600 (Central Standard Time)
+[debug] [2023-03-07T01:51:33.402Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-07T01:51:33.473Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-07T01:51:33.474Z] > authorizing via signed-in user (eralejo2003@gmail.com)
+[debug] [2023-03-07T01:51:33.474Z] [iam] checking project stable-erick-bot for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-07T01:51:33.476Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/stable-erick-bot:testIamPermissions [none]
+[debug] [2023-03-07T01:51:33.476Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/stable-erick-bot:testIamPermissions x-goog-quota-user=projects/stable-erick-bot
+[debug] [2023-03-07T01:51:33.476Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/stable-erick-bot:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-07T01:51:33.840Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/stable-erick-bot:testIamPermissions 200
+[debug] [2023-03-07T01:51:33.840Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/stable-erick-bot:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-07T01:51:33.841Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/stable-erick-bot [none]
+[debug] [2023-03-07T01:51:34.256Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/stable-erick-bot 200
+[debug] [2023-03-07T01:51:34.257Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/stable-erick-bot {"projectId":"stable-erick-bot","projectNumber":"64073534379","displayName":"Stable Erick Bot","name":"projects/stable-erick-bot","resources":{"hostingSite":"stable-erick-bot"},"state":"ACTIVE","etag":"1_21d54383-35c2-46a2-82fc-28eeb0aa5355"}
+[info] 
+[info] === Deploying to 'stable-erick-bot'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2023-03-07T01:51:34.262Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/stable-erick-bot/versions [none]
+[debug] [2023-03-07T01:51:34.262Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/stable-erick-bot/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2023-03-07T01:51:34.939Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/stable-erick-bot/versions 200
+[debug] [2023-03-07T01:51:34.939Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/stable-erick-bot/versions {"name":"projects/64073534379/sites/stable-erick-bot/versions/21bbf7f4da0b5745","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[stable-erick-bot]: beginning deploy... 
+[info] i  hosting[stable-erick-bot]: found 12 files in dist 
+[debug] [2023-03-07T01:51:34.950Z] [hosting] uploading with 200 concurrency
+[debug] [2023-03-07T01:51:34.956Z] [hosting] hash cache [ZGlzdA] stored for 12 files
+[debug] [2023-03-07T01:51:34.956Z] [hosting][hash queue][FINAL] {"max":1,"min":0,"avg":0,"active":0,"complete":12,"success":12,"errored":0,"retried":0,"total":12,"elapsed":3}
+[debug] [2023-03-07T01:51:34.957Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/64073534379/sites/stable-erick-bot/versions/21bbf7f4da0b5745:populateFiles [none]
+[debug] [2023-03-07T01:51:34.957Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/64073534379/sites/stable-erick-bot/versions/21bbf7f4da0b5745:populateFiles {"files":{"/404.html":"daa499dd96d8229e73235345702ba32f0793f0c8e5c0d30e40e37a5872be57aa","/favicon.ico":"d5451f0f0f0bcbcd433bbdf4f6e7e5d89d8ecce2650649e969ccb5e5cd499ab2","/index.html":"33fd14c9a8cec597f9fd1e5bbbb055fc2bdfd33b974a429ba34c3eb9eced9949","/css/app.97b2e30d.css":"d34d311dbc7780382c715c56ac6ea669e89a2a389859eaa604fda609466b916c","/css/chunk-vendors.7bbee22c.css":"860c0a26a8bcd9346e3bef15bd556cd5a815b5c4050884160ffad027a26d6a11","/img/bot2.6a374dfd.svg":"5c5468dc62390e0a71d67230da8a39d28ee27056fcf295e5581d21ae89103d43","/img/erick.3ede7a08.svg":"d044a84c9009a060362f33e07d6bd5c72b14755b64c0112353c85037d598eede","/img/landing-img.e8465f77.svg":"d3a6b814bd3fb4365b72b3c115cbe9bb46df58ebb67b5824c130ff980d95fc32","/js/app.961eda92.js":"497b717dc2041268a06c80e031dc40a4de5aa331db9ecf638976ed52a714270a","/js/app.961eda92.js.map":"18979fc5bc9eb03e929db798da1f1bc9595eb3a9fa13588c12e9d677165c470b","/js/chunk-vendors.03ebb3cb.js":"77252b751a3c416af006167ba0d94ea2e0fd4450cfd046807a600533fe703b15","/js/chunk-vendors.03ebb3cb.js.map":"2f4d82a734cb7bafd5dce4e1ea94177d03a421be21f1dac869c1ad63472cf057"}}

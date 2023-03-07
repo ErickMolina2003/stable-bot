@@ -150,7 +150,7 @@ export default class ChatPage extends Vue {
     };
     this.messages.push(newMessage);
 
-    const API_KEY = "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";
+    const API_KEY = "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";
 
     const CHAT_ENDPOINT = "https://api.openai.com/v1/chat/completions";
 
