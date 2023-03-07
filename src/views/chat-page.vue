@@ -191,6 +191,7 @@ export default class ChatPage extends Vue {
           speakerTitle: "Stable Erick Bot",
           message: "Se han agotado las requests del dia.",
         };
+        this.messages.push(newMessage);
         console.error(error);
       });
     this.input = "";
