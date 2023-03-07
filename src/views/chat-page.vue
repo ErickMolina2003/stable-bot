@@ -118,6 +118,8 @@ export default class ChatPage extends Vue {
   user = "yo";
   input = "";
 
+  access = "";
+
   messages = [
     {
       speaker: "bot",
@@ -142,6 +144,24 @@ export default class ChatPage extends Vue {
     }
   }
 
+  beforeMount() {
+    axios
+      .get(
+        "https://stable-erick-bot-default-rtdb.firebaseio.com/access/-NPtsnxcNpTiPtUpNohA.json",
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      )
+      .then((response) => {
+        this.access = response.data.access;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   sendMessage() {
     const newMessage = {
       speaker: "yo",
@@ -149,8 +169,6 @@ export default class ChatPage extends Vue {
       message: this.input,
     };
     this.messages.push(newMessage);
-
-    const API_KEY = "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";
 
     const CHAT_ENDPOINT = "https://api.openai.com/v1/chat/completions";
 
@@ -169,7 +187,7 @@ export default class ChatPage extends Vue {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${API_KEY}`,
+            Authorization: `Bearer ${this.access}`,
           },
         }
       )
